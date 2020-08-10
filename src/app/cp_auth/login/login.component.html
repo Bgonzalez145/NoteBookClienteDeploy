@@ -1,0 +1,46 @@
+<div class="text-center" *ngIf="isLogged; else loggedOut"> 
+    <h2> Ya has iniciado sesion </h2>
+</div>
+
+<ng-template #loggedOut>
+    <div class="container d-flex justify-content-center" style="margin-top: 100px;">
+        <div class="card">
+            <div class="card-header">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link active" routerLink="/login">Iniciar sesion</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/register">Crear cuenta</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="card-body">
+                 <form #f="ngForm" (ngSubmit)="onLogin()" novalidate>
+                     <div class="form-group">
+                         <label for="nombreUsuario"> Nombre de usuario </label>
+                         <input type="text" name="nombreUsuario" id="nombreUsuario" class="form-control"
+                         [(ngModel)]="nombreUsuario" required>
+                     </div>
+                     <div class="form-group">
+                        <label for="passwordUsuario"> Contraseña de usuario </label>
+                        <input type="password" name="passwordUsuario" id="passwordUsuario" class="form-control"
+                        [(ngModel)]="passwordUsuario" required>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-outline-success btn-block" [disabled]="!f.valid"> 
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-align-start" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M1.5 1a.5.5 0 0 1 .5.5v13a.5.5 0 0 1-1 0v-13a.5.5 0 0 1 .5-.5z"/>
+                                <path d="M3 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V7z"/>
+                            </svg>
+                            Iniciar sesión 
+                        </button>
+                    </div>
+                 </form>
+                 <div *ngIf="f.submitted && isLoginFail" class="alert alert-danger mt-3">
+                     Error: Usuario o clave incorrectos.
+                 </div>
+            </div>
+        </div>
+    </div>
+</ng-template>
