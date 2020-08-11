@@ -1,10 +1,6 @@
 {
   "name": "note-book-cliente",
   "version": "0.0.0",
-  // "engines": {
-  //   "node": "v8.11.4",
-  //   "npm": "5.8.0"
-  // },
   "scripts": {
     "ng": "ng",
     "start": "node server.js",
